@@ -4,7 +4,6 @@ import 'package:sqflite/sqflite.dart';
 import '../models/product.dart';
 
 class DatabaseHelper {
-  // ignore: unused_field
   static final DatabaseHelper _instance = DatabaseHelper._init();
   static Database? _database;
 
@@ -36,20 +35,20 @@ class DatabaseHelper {
     ''');
   }
 
-  // CREATE PRODUCT
+  // Create product
   Future<int> createProduct(Product product) async {
     final db = await database;
     return await db.insert('products', product.toMap());
   }
 
-  // READ ALL THE PRODUCTS
+  // Read all the products
   Future<List<Product>> getAllProducts() async {
     final db = await database;
     final result = await db.query('products', orderBy: 'addedOn DESC');
     return result.map((e) => Product.fromMap(e)).toList();
   }
 
-  // READ BY ID NUMBER
+  // Read by ID Number
   Future<Product?> getProduct(int id) async {
     final db = await database;
     final result = await db.query('products', where: 'id = ?', whereArgs: [id]);
@@ -59,7 +58,7 @@ class DatabaseHelper {
     return null;
   }
 
-  // UPDATE THE PRODUCT
+  // Update the product
   Future<int> updateProduct(Product product) async {
     final db = await database;
     return await db.update(
@@ -70,7 +69,7 @@ class DatabaseHelper {
     );
   }
 
-  // DELETE PRODUCT
+  // Delete product
   Future<int> deleteProduct(int id) async {
     final db = await database;
     return await db.delete('products', where: 'id = ?', whereArgs: [id]);

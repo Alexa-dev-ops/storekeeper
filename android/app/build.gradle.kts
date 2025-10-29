@@ -7,8 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.storekeeper"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    
+    // FIX APPLIED: Hardcoded to 36 to satisfy plugin requirements (e.g., fluttertoast)
+    compileSdk = 36 
+
+    // Cleaned up: Using the specific version and removing the redundant 'flutter.ndkVersion' line
+    ndkVersion = "27.0.12077973" 
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
